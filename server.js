@@ -21,8 +21,8 @@ app.use((req, res, next) => {
   next();
 });
 
-const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/shadow-market'
-mongoose.connect(mongoUri)
+const { connect } = require('./lib/db');
+connect()
 .then(() => console.log('Connected to MongoDB (Olympus)'))
 .catch(err => console.error('Failed to connect to MongoDB:', err));
 
@@ -187,7 +187,7 @@ app.post('/api/auth/verify-code', async (req, res) => {
 // Serve static after APIs
 app.use(express.static('public'));
 
-if (process.env.NODE_ENV !== 'production') {
+if (require.main === module) {
   app.listen(port, () => {
     console.log(`Shadow-Market Oracle listening at http://localhost:${port}`);
   });
