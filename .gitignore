@@ -1,0 +1,46 @@
+node_modules/
+.env
+.env.*
+.env.local
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.nyc_output/
+coverage/
+dist/
+build/
+/.cache
+debug.log
+logs/
+*.log
+/.parcel-cache
+/.turbo
+/.next
+/.vercel
+
+/* Local project artifacts */
+public/uploads/
+uploads/
+tmp/
+temp/
+data/
+db.sqlite
+*.sqlite
+*.sqlite3
+*.db
+
+# SSL / keys
+*.pem
+*.key
+
+# Editor history and local files
+.history
+.vscode/*
+!.vscode/settings.json
+
+# macOS
+.DS_Store

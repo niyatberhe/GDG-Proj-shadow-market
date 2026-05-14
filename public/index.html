@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shadow-Market | Cyber-Olympus</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&family=Fira+Code&display=swap" rel="stylesheet">
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        midnight: '#0f172a',
+                        lunar: '#e2e8f0',
+                        bronze: '#d4af37',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Cinzel', 'serif'],
+                        mono: ['Fira Code', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-midnight text-lunar font-sans min-h-screen relative overflow-x-hidden">
+    <div class="fixed inset-0 z-0 opacity-20 pointer-events-none" style="background-image: radial-gradient(circle at 50% 50%, #d4af37 0%, transparent 50%); mix-blend-mode: screen;"></div>
+    <div class="fixed inset-0 z-0 opacity-20 pointer-events-none" style="background-image: radial-gradient(circle at 50% 50%, #d4af37 0%, transparent 50%); mix-blend-mode: screen;"></div>
+    
+    <header class="relative z-10 border-b border-bronze/30 bg-midnight/80 backdrop-blur-md sticky top-0">
+        <div class="container mx-auto px-4 py-6 flex justify-between items-center">
+            <h1 class="text-3xl font-serif font-bold text-bronze tracking-widest uppercase" style="text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);">Shadow Market</h1>
+            <nav>
+                <button id="add-item-btn" class="px-6 py-2 border border-bronze text-bronze font-mono hover:bg-bronze hover:text-midnight transition-all duration-300 shadow-[0_0_15px_rgba(212,175,55,0.2)]">Offer Tribute</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="relative z-10 container mx-auto px-4 py-12">
+        <section>
+            <h2 class="text-2xl font-serif text-lunar mb-8 border-b border-bronze/20 inline-block pb-2">The Temple Offerings</h2>
+            
+            <!-- Items Grid -->
+            <div id="items-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+            
+            <div id="loading" class="text-center font-mono text-bronze py-12 animate-pulse">
+                Summoning Offerings...
+            </div>
+        </section>
+    </main>
+
+    <div id="item-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="bg-midnight border border-bronze p-8 max-w-md w-full mx-4 shadow-[0_0_30px_rgba(212,175,55,0.15)] transform scale-95 transition-transform duration-300 modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-serif text-bronze">New Offering</h3>
+                <button id="close-modal-btn" class="text-lunar hover:text-bronze font-mono text-xl">&times;</button>
+            </div>
+            
+            <form id="item-form" class="space-y-4">
+                <div>
+                    <label class="block font-mono text-sm text-lunar mb-1">Name of Artifact</label>
+                    <input type="text" id="item-name" required class="w-full bg-midnight border border-bronze/50 focus:border-bronze text-lunar px-4 py-2 outline-none font-sans">
+                </div>
+                
+                <div class="flex gap-4">
+                    <div class="flex-1">
+                        <label class="block font-mono text-sm text-lunar mb-1">Tribute (ETB)</label>
+                        <input type="number" id="item-price" required class="w-full bg-midnight border border-bronze/50 focus:border-bronze text-lunar px-4 py-2 outline-none font-sans">
+                    </div>
+                    <div class="flex-1">
+                        <label class="block font-mono text-sm text-lunar mb-1">Category</label>
+                        <select id="item-category" required class="w-full bg-midnight border border-bronze/50 focus:border-bronze text-lunar px-4 py-2 outline-none font-sans appearance-none">
+                            <option value="Electronics">Electronics</option>
+                            <option value="Books">Books</option>
+                            <option value="Clothing">Clothing</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block font-mono text-sm text-lunar mb-1">Condition</label>
+                    <select id="item-condition" required class="w-full bg-midnight border border-bronze/50 focus:border-bronze text-lunar px-4 py-2 outline-none font-sans appearance-none">
+                        <option value="New">New</option>
+                        <option value="Mint">Mint</option>
+                        <option value="Battle-Worn">Battle-Worn</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block font-mono text-sm text-lunar mb-1">Lore (Description)</label>
+                    <textarea id="item-description" required rows="3" class="w-full bg-midnight border border-bronze/50 focus:border-bronze text-lunar px-4 py-2 outline-none font-sans resize-none"></textarea>
+                </div>
+
+                <div class="pt-4 flex flex-col gap-3">
+                        <!-- Oracle removed -->
+                    <div class="grid grid-cols-1 gap-3">
+                        <input id="offerer-phone" placeholder="Your phone (optional)" class="w-full bg-midnight border border-bronze/50 text-lunar px-4 py-2 outline-none font-sans" />
+                        <input id="offerer-tg" placeholder="Your Telegram (optional)" class="w-full bg-midnight border border-bronze/50 text-lunar px-4 py-2 outline-none font-sans" />
+                        <button type="submit" class="w-full bg-bronze text-midnight font-bold py-3 font-serif tracking-wide hover:bg-yellow-500 transition-colors">Complete Ritual</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        // Prevent unauthenticated access to the dashboard
+        (function(){
+            try {
+                const token = localStorage.getItem('token')
+                if (!token) {
+                    window.location.replace('/intro.html')
+                }
+            } catch (e) {
+                // If localStorage is unavailable, send user to intro
+                window.location.replace('/intro.html')
+            }
+        })();
+    </script>
+</body>
+</html>

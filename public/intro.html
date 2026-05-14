@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Shadow Market — Olympus</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&family=Fira+Code&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { midnight: '#0f172a', lunar: '#e2e8f0', bronze: '#d4af37' },
+          fontFamily: { sans: ['Inter','sans-serif'], serif: ['Cinzel','serif'], mono: ['Fira Code','monospace'] }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-midnight text-lunar font-sans min-h-screen relative overflow-x-hidden">
+  <div class="fixed inset-0 z-0 opacity-20 pointer-events-none" style="background-image: radial-gradient(circle at 50% 50%, #d4af37 0%, transparent 50%); mix-blend-mode: screen;"></div>
+  <div class="fixed inset-0 z-0 opacity-20 pointer-events-none" style="background-image: radial-gradient(circle at 50% 50%, #d4af37 0%, transparent 50%); mix-blend-mode: screen;"></div>
+  <div class="min-h-screen flex flex-col">
+    <header class="relative z-10 border-b border-bronze/30 bg-midnight/80 backdrop-blur-md sticky top-0">
+      <div class="container mx-auto px-4 py-6 flex justify-between items-center">
+        <h1 class="text-3xl font-serif font-bold text-bronze tracking-widest uppercase">Shadow Market</h1>
+        <nav>
+          <button id="login-btn" class="px-6 py-2 border border-bronze text-bronze font-mono hover:bg-bronze hover:text-midnight transition-all duration-300 shadow-[0_0_15px_rgba(212,175,55,0.2)]">Login / Sign up</button>
+        </nav>
+      </div>
+    </header>
+    <main class="flex-1 grid place-items-center">
+      <div class="text-center px-6">
+        <h1 class="text-5xl font-serif text-bronze mb-6">Shadow Market</h1>
+        <p class="mb-6 font-serif">Ancient treasures and campus tributes. Enter the market to browse and offer items.</p>
+        <button id="enter-market" class="px-6 py-3 bg-bronze text-midnight font-bold rounded shadow-[0_0_15px_rgba(212,175,55,0.15)] hover:bg-yellow-500 transition-colors">Enter the Market</button>
+      </div>
+    </main>
+  </div>
+
+  <div id="auth-modal" class="fixed inset-0 z-60 flex items-center justify-center bg-black/60 opacity-0 pointer-events-none transition-opacity duration-200">
+    <div class="bg-midnight border border-bronze p-6 max-w-sm w-full mx-4">
+      <div class="flex justify-between items-center mb-4">
+        <h4 class="text-lg font-serif text-bronze">Login with Phone</h4>
+        <button id="close-auth-btn" class="text-lunar">&times;</button>
+      </div>
+      <div class="space-y-3">
+        <input id="auth-phone" placeholder="Phone number" class="w-full bg-midnight border border-bronze/50 text-lunar px-3 py-2" />
+        <div class="flex gap-2">
+          <input id="auth-code" placeholder="Code" class="flex-1 bg-midnight border border-bronze/50 text-lunar px-3 py-2" />
+          <button id="request-code-btn" class="px-3 py-2 border border-bronze text-bronze">Request</button>
+        </div>
+        <button id="verify-code-btn" class="w-full bg-bronze text-midnight py-2">Verify</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="auth.js"></script>
+  <script>
+    // Make the Enter button open the auth modal instead of navigating directly
+    (function(){
+      const enter = document.getElementById('enter-market')
+      if (!enter) return
+      enter.addEventListener('click', (e) => {
+        const loginBtn = document.getElementById('login-btn')
+        if (loginBtn) loginBtn.click()
+      })
+    })();
+  </script>
+</body>
+</html>
