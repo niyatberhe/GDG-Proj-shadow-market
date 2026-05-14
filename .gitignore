@@ -23,7 +23,6 @@ logs/
 /.next
 /.vercel
 
-/* Local project artifacts */
 public/uploads/
 uploads/
 tmp/
@@ -34,11 +33,9 @@ db.sqlite
 *.sqlite3
 *.db
 
-# SSL / keys
 *.pem
 *.key
 
-# Editor history and local files
 .history
 .vscode/*
 !.vscode/settings.json

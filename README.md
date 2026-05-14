@@ -56,4 +56,3 @@ Work in small, focused commits. Example order to show progress:
 5. Docs and cleanup (`.gitignore`, `README.md`)
 
 ---
-If you want, I can add a simple `lib/db.js` helper or a sample `vercel.json` to make deployment easier.
