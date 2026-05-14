@@ -5,7 +5,7 @@ const cors = require('cors');
 const path = require('path');
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
-// AI integration removed
+
 const Item = require('./models/Item');
 const AuthCode = require('./models/AuthCode');
 const User = require('./models/User');
@@ -15,33 +15,35 @@ const port = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
-// Simple request logger for debugging
+
 app.use((req, res, next) => {
   console.log('REQ', req.method, req.path);
   next();
 });
 
-mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/shadow-market')
+const mongoUri = process.env.MONGO_URI || process.env.MONGODB_URI || 'mongodb://localhost:27017/shadow-market'
+mongoose.connect(mongoUri)
 .then(() => console.log('Connected to MongoDB (Olympus)'))
 .catch(err => console.error('Failed to connect to MongoDB:', err));
 
 const JWT_SECRET = process.env.JWT_SECRET || 'dev_secret_change_me';
+if (!process.env.JWT_SECRET) {
+  console.warn('WARNING: JWT_SECRET not set in environment; using insecure fallback for development. Set JWT_SECRET in production.');
+}
 
 async function userFromAuthHeader(req) {
   const auth = req.headers.authorization && req.headers.authorization.split(' ')[1];
   if (!auth) return null;
   try {
-    // Verify JWT; if it verifies, extract user id
+
     const decoded = jwt.verify(auth, JWT_SECRET);
     if (decoded && decoded.id) {
       const user = await User.findById(decoded.id);
       return user || null;
     }
-    // Fallback: if token stored on user (legacy), try find by token
     const legacy = await User.findOne({ token: auth });
     return legacy || null;
   } catch (e) {
-    // token invalid or expired
     return null;
   }
 }
