@@ -1,6 +1,7 @@
 node_modules/
 .env
 .env.*
+!.env.example
 .env.local
 .DS_Store
 Thumbs.db
@@ -41,6 +42,10 @@ db.sqlite
 .history
 .vscode/*
 !.vscode/settings.json
+
+# Keep placeholder files (track .gitkeep and example env)
+!uploads/.gitkeep
+!public/uploads/.gitkeep
 
 # macOS
 .DS_Store
