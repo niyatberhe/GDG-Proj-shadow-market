@@ -1,6 +1,7 @@
 node_modules/
 .env
 .env.*
+!.env.example
 .env.local
 .DS_Store
 Thumbs.db
@@ -22,7 +23,6 @@ logs/
 /.next
 /.vercel
 
-/* Local project artifacts */
 public/uploads/
 uploads/
 tmp/
@@ -33,14 +33,15 @@ db.sqlite
 *.sqlite3
 *.db
 
-# SSL / keys
 *.pem
 *.key
 
-# Editor history and local files
 .history
 .vscode/*
 !.vscode/settings.json
+
+!uploads/.gitkeep
+!public/uploads/.gitkeep
 
 # macOS
 .DS_Store
