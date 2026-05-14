@@ -187,8 +187,10 @@ app.post('/api/auth/verify-code', async (req, res) => {
 // Serve static after APIs
 app.use(express.static('public'));
 
-app.listen(port, () => {
-  console.log(`Shadow-Market Oracle listening at http://localhost:${port}`);
-});
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(port, () => {
+    console.log(`Shadow-Market Oracle listening at http://localhost:${port}`);
+  });
+}
 
 module.exports = app;
