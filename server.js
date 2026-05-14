@@ -21,7 +21,7 @@ app.use((req, res, next) => {
   next();
 });
 
-const mongoUri = process.env.MONGO_URI || process.env.MONGODB_URI || 'mongodb://localhost:27017/shadow-market'
+const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/shadow-market'
 mongoose.connect(mongoUri)
 .then(() => console.log('Connected to MongoDB (Olympus)'))
 .catch(err => console.error('Failed to connect to MongoDB:', err));

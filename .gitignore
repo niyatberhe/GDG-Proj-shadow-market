@@ -40,6 +40,7 @@ db.sqlite
 .vscode/*
 !.vscode/settings.json
 
+# Keep placeholder files (track .gitkeep and example env)
 !uploads/.gitkeep
 !public/uploads/.gitkeep
 
