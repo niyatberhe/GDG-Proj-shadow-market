@@ -190,4 +190,5 @@ app.use(express.static('public'));
 app.listen(port, () => {
   console.log(`Shadow-Market Oracle listening at http://localhost:${port}`);
 });
- 
+
+module.exports = app;
