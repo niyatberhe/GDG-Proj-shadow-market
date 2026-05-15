@@ -1,6 +1,7 @@
 # Shadow Market — Student Project
 
-A small demo webapp for learning Express, MongoDB, and simple frontend JavaScript. It provides a tiny marketplace UI and a minimal authentication flow.
+A small demo webapp for learning Express, MongoDB and simple frontend JavaScript. It provides a tiny marketplace UI and a minimal authentication flow.
+Made to solve the problem of navigating the traffic of Telegram product ads and make finding products needed easier.
 
 ## Quick start (for students)
 
@@ -44,15 +45,5 @@ location.reload();
 
 - Keep secrets out of the repo. Use environment variables in your host (e.g. Vercel). Do not commit `.env`.
 - For easy Vercel deployment, you can deploy `public/` as a static site and host the backend separately, or convert API routes into serverless functions under `/api`.
-
-## Contributing / commits
-
-Work in small, focused commits. Example order to show progress:
-
-1. Backend fixes (server.js)
-2. Dependency updates (`package.json`, lockfile)
-3. Frontend fixes (`public/*`)
-4. Styles and polish (`public/styles.css`)
-5. Docs and cleanup (`.gitignore`, `README.md`)
 
 ---
