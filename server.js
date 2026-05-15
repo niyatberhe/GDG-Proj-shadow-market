@@ -22,9 +22,15 @@ app.use((req, res, next) => {
 });
 
 const { connect } = require('./lib/db');
-connect()
-.then(() => console.log('Connected to MongoDB (Olympus)'))
-.catch(err => console.error('Failed to connect to MongoDB:', err));
+app.use(async (req, res, next) => {
+  try {
+    await connect();
+    next();
+  } catch (err) {
+    console.error('Failed to connect to MongoDB:', err);
+    res.status(500).json({ error: 'Database connection failed' });
+  }
+});
 
 const JWT_SECRET = process.env.JWT_SECRET || 'dev_secret_change_me';
 if (!process.env.JWT_SECRET) {
